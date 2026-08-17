@@ -3,7 +3,7 @@
     "id": "manual-2026-08-14",
     "date": "2026-08-14",
     "endDate": "2026-08-14",
-    "title": "학술대회 구두 발표",
+    "title": "교사의 에듀테크 온보딩 격차 해소를 위한 연수 프로그램 개발 및 효과 평가 - '오늘부터 캔바'를 중심으로 -",
     "organization": "컴퓨터교육학회",
     "type": "Presentation",
     "calendarSource": "manual-history",
@@ -144,7 +144,7 @@
     "date": "2026-07-10",
     "endDate": "2026-07-10",
     "title": "학생들을 위한 현명한 AI 활용법",
-    "organization": "부경고등학교 진로체험",
+    "organization": "부경고등학교",
     "type": "Training",
     "calendarSource": "manual-history",
     "allDay": true
@@ -154,8 +154,8 @@
     "date": "2026-07-10",
     "endDate": "2026-07-10",
     "title": "AI·디지털 시대에 필요한 교육적 소양 함양 — 인공지능 활용 선도교사 연수",
-    "organization": "",
-    "type": "Training",
+    "organization": "교육부 & 케리스",
+    "type": "Presentation",
     "calendarSource": "manual-history",
     "allDay": true
   },
@@ -214,7 +214,7 @@
     "date": "2026-06-09",
     "endDate": "2026-06-09",
     "title": "Google 공인교육자 L1 준비과정",
-    "organization": "",
+    "organization": "신주초등학교",
     "type": "Training",
     "calendarSource": "manual-history",
     "allDay": true
@@ -234,7 +234,7 @@
     "date": "2026-05-18",
     "endDate": "2026-05-18",
     "title": "AI로 만드는 수업, AI로 줄이는 업무",
-    "organization": "",
+    "organization": "경남교육청",
     "type": "Training",
     "calendarSource": "manual-history",
     "allDay": true
@@ -325,16 +325,6 @@
     "endDate": "2026-04-17",
     "title": "디지털튜터 대상 Google Workspace 활용",
     "organization": "부산 디지털튜터",
-    "type": "Training",
-    "calendarSource": "manual-history",
-    "allDay": true
-  },
-  {
-    "id": "manual-2026-04-16",
-    "date": "2026-04-16",
-    "endDate": "2026-04-16",
-    "title": "김해 진로지원센터",
-    "organization": "",
     "type": "Training",
     "calendarSource": "manual-history",
     "allDay": true
@@ -454,8 +444,8 @@
     "date": "2026-01-19",
     "endDate": "2026-01-19",
     "title": "PNU × 동남권 에듀테크 얼라이언스 교류회",
-    "organization": "",
-    "type": "Training",
+    "organization": "부산대학교",
+    "type": "Presentation",
     "calendarSource": "manual-history",
     "allDay": true
   },
@@ -473,7 +463,7 @@
     "id": "manual-2026-01-05",
     "date": "2026-01-05",
     "endDate": "2026-01-05",
-    "title": "트레이너 준비 과정",
+    "title": "구글공인트레이너 준비 과정",
     "organization": "동의대학교",
     "type": "Training",
     "calendarSource": "manual-history",
