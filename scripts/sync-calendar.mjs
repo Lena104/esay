@@ -1,10 +1,27 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import crypto from 'node:crypto';
-const output=path.resolve('data/lecture-history.json'),fixture=process.env.CALENDAR_FIXTURE;
+const output=path.resolve('data/lecture-history.json'),manualInput=path.resolve('data/lecture-history.manual.json'),fixture=process.env.CALENDAR_FIXTURE,manualOnly=process.env.CALENDAR_MANUAL_ONLY==='1';
 const ids=[process.env.GOOGLE_CALENDAR_ID_1,process.env.GOOGLE_CALENDAR_ID_2].filter(Boolean);
 function meta(description=''){return Object.fromEntries(description.split(/\r?\n/).map(line=>line.match(/^(기관|대상|주제|유형):\s*(.+)$/)).filter(Boolean).map(m=>[({기관:'organization',대상:'audience',주제:'topic',유형:'type'})[m[1]],m[2]]))}
-function normalize(raw){const now=new Date(),seen=new Set();return (raw.items||raw).map(e=>{const start=e.start?.date||e.start?.dateTime||e.date,end=e.end?.date||e.end?.dateTime||e.endDate||start;if(e.status==='cancelled'||e.visibility!=='public'||!String(e.summary||e.title||'').startsWith('[ESAY]')||new Date(end)>=now)return null;const id=e.id;if(!id||seen.has(id))return null;seen.add(id);return{id,date:String(start).slice(0,10),endDate:String(end).slice(0,10),title:String(e.summary||e.title).replace(/^\[ESAY\]\s*/,''),...meta(e.description),calendarSource:e.calendarSource||'public-training',allDay:Boolean(e.start?.date||e.allDay)}}).filter(Boolean).sort((a,b)=>b.date.localeCompare(a.date))}
+function titleParts(summary=''){
+  const clean=String(summary).replace(/^\[강의\]\s*/,'').trim();
+  const leading=clean.match(/^\(([^()]+)\)\s*(.+)$/),trailing=clean.match(/^(.+?)\s*\(([^()]+)\)$/);
+  if(leading)return{title:leading[2].trim(),organization:leading[1].trim()};
+  if(trailing)return{title:trailing[1].trim(),organization:trailing[2].trim()};
+  return{title:clean};
+}
+function normalize(raw){const now=new Date(),seen=new Set();return (raw.items||raw).map(e=>{const start=e.start?.date||e.start?.dateTime||e.date,end=e.end?.date||e.end?.dateTime||e.endDate||start,summary=String(e.summary||e.title||'');if(e.status==='cancelled'||e.visibility!=='public'||!summary.startsWith('[강의]')||new Date(end)>=now)return null;const id=e.id;if(!id||seen.has(id))return null;seen.add(id);return{id,date:String(start).slice(0,10),endDate:String(end).slice(0,10),...titleParts(summary),...meta(e.description),calendarSource:e.calendarSource||'public-training',allDay:Boolean(e.start?.date||e.allDay)}}).filter(Boolean).sort((a,b)=>b.date.localeCompare(a.date))}
+async function manualHistory(){
+  const data=JSON.parse(await fs.readFile(manualInput,'utf8'));
+  if(!Array.isArray(data))throw new Error('lecture-history.manual.json은 배열이어야 합니다.');
+  return data.map(item=>({...item,calendarSource:item.calendarSource||'manual-history'}));
+}
+function mergeHistory(manual,synced){
+  const byId=new Map();
+  for(const item of [...manual,...synced])if(item?.id&&!byId.has(item.id))byId.set(item.id,item);
+  return [...byId.values()].sort((a,b)=>String(b.date).localeCompare(String(a.date)));
+}
 const b64=value=>Buffer.from(value).toString('base64url');
 async function accessToken(){
   const account=JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_JSON||'{}');
@@ -24,4 +41,4 @@ async function source(){
   }
   return {items:all};
 }
-try{const data=normalize(await source());if(!data.length)throw new Error('공개 조건을 통과한 일정이 0건이므로 기존 파일을 보존합니다.');await fs.writeFile(output,JSON.stringify(data,null,2)+'\n');console.log(`${data.length}개 강의를 동기화했습니다.`)}catch(error){console.error(error.message);process.exitCode=1}
+try{const manual=await manualHistory();if(manualOnly){await fs.writeFile(output,JSON.stringify(mergeHistory(manual,[]),null,2)+'\n');console.log(`수동 이력 ${manual.length}개로 공개 데이터를 생성했습니다.`)}else{const synced=normalize(await source());if(!synced.length)throw new Error('공개 조건을 통과한 일정이 0건이므로 기존 파일을 보존합니다.');const data=mergeHistory(manual,synced);await fs.writeFile(output,JSON.stringify(data,null,2)+'\n');console.log(`수동 ${manual.length}개와 자동 ${synced.length}개를 합쳐 ${data.length}개 강의를 동기화했습니다.`)}}catch(error){console.error(error.message);process.exitCode=1}

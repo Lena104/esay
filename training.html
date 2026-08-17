@@ -1,1 +1,55 @@
-<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Training — ESAY</title><meta name="description" content="교사, 대학·연구자, 공공기관을 위한 ESAY 교육 프로그램과 최근 이력."><link rel="stylesheet" href="css/style.css"></head><body><a class="skip-link" href="#main">본문 바로가기</a><header class="mobile-header"><a class="brand" href="index.html">ESAY</a><a href="index.html">HOME →</a></header><aside class="sidebar"><a class="brand" href="index.html">ESAY</a><nav><a href="work.html"><b>01</b><span>WORK</span></a><a href="notes.html"><b>02</b><span>NOTES</span></a><a href="training.html"><b>03</b><span>TRAINING</span></a><a href="about.html"><b>04</b><span>ABOUT</span></a></nav></aside><main id="main" class="page-shell"><header class="page-intro"><p class="eyebrow">03 / TRAINING</p><h1>TRAINING</h1><p>도구 사용법을 넘어, 각자의 현장에서 다시 써볼 수 있는 배움의 흐름을 설계합니다.</p></header><section class="program-grid" aria-label="교육 대상"><article class="program"><p class="eyebrow">TEACHERS</p><h3>교사</h3><p>Gemini, NotebookLM, Canva, AI 수업 설계, Google Workspace</p></article><article class="program"><p class="eyebrow">UNIVERSITY & RESEARCHERS</p><h3>대학 · 연구자</h3><p>AI 연구 워크플로, 데이터 분석, Vibe Coding, Agent와 Skills</p></article><article class="program"><p class="eyebrow">PUBLIC SECTOR</p><h3>공공기관</h3><p>생성형 AI 업무 활용, 문서·자료 작성, 데이터 분석과 자동화</p></article><article class="program"><p class="eyebrow">CUSTOM WORKSHOP</p><h3>맞춤 워크숍</h3><p>기관의 목적, 대상, 시간과 환경에 맞춘 프로그램 설계</p></article></section><section class="archive-section"><h2>RECENT HISTORY</h2><div class="full-list" data-history><p class="status">이력을 불러오는 중입니다.</p></div></section></main><script type="module">import{loadData}from'./js/data-loader.js';const e=document.querySelector('[data-history]'),x=s=>String(s??'').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));loadData('lecture-history.json',[]).then(a=>e.innerHTML=a.length?a.map(l=>`<article><time>${x(l.date)}</time><div><p class="eyebrow">${x(l.type||'TRAINING')}</p><h3>${x(l.title)}</h3></div><p>${x(l.organization||l.audience||'')}</p><b>→</b></article>`).join(''):'<p class="status">공개 가능한 강의 이력을 준비 중입니다.</p>');</script></body></html>
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Training — ESAY</title>
+  <meta name="description" content="교사, 대학·연구자, 공공기관을 위한 ESAY 교육 프로그램과 최근 이력.">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .full-list h3{font-size:17px;line-height:1.4}
+    @media(max-width:900px){.full-list h3{font-size:15px}}
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">본문 바로가기</a>
+  <header class="mobile-header"><a class="brand" href="index.html">ESAY</a><a href="index.html">HOME →</a></header>
+  <aside class="sidebar">
+    <a class="brand" href="index.html">ESAY</a>
+    <nav>
+      <a href="work.html"><b>01</b><span>WORK</span></a>
+      <a href="notes.html"><b>02</b><span>NOTES</span></a>
+      <a href="training.html"><b>03</b><span>TRAINING</span></a>
+      <a href="about.html"><b>04</b><span>ABOUT</span></a>
+    </nav>
+  </aside>
+  <main id="main" class="page-shell">
+    <header class="page-intro">
+      <p class="eyebrow">03 / TRAINING</p>
+      <h1>TRAINING</h1>
+      <p>도구 사용법을 넘어, 각자의 현장에서 다시 써볼 수 있는 배움의 흐름을 설계합니다.</p>
+    </header>
+    <section class="program-grid" aria-label="교육 대상">
+      <article class="program"><p class="eyebrow">TEACHERS</p><h3>교사</h3><p>Gemini, NotebookLM, Canva, AI 수업 설계, Google Workspace</p></article>
+      <article class="program"><p class="eyebrow">UNIVERSITY &amp; RESEARCHERS</p><h3>대학 · 연구자</h3><p>AI 연구 워크플로, 데이터 분석, Vibe Coding, Agent와 Skills</p></article>
+      <article class="program"><p class="eyebrow">PUBLIC SECTOR</p><h3>공공기관</h3><p>생성형 AI 업무 활용, 문서·자료 작성, 데이터 분석과 자동화</p></article>
+      <article class="program"><p class="eyebrow">CUSTOM WORKSHOP</p><h3>맞춤 워크숍</h3><p>기관의 목적, 대상, 시간과 환경에 맞춘 프로그램 설계</p></article>
+    </section>
+    <section class="archive-section">
+      <h2>RECENT HISTORY</h2>
+      <div class="full-list" data-history><p class="status">이력을 불러오는 중입니다.</p></div>
+      <p class="status">2025년 이전 교육 · 워크숍 이력 외 다수</p>
+    </section>
+  </main>
+  <script type="module">
+    import {loadData} from './js/data-loader.js';
+    const root=document.querySelector('[data-history]');
+    const escape=value=>String(value??'').replace(/[&<>]/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[char]));
+    loadData('lecture-history.json',[]).then(items=>{
+      root.innerHTML=items.length
+        ?items.map(item=>`<article><time>${escape(item.date)}</time><div><p class="eyebrow">${escape(item.type||'TRAINING')}</p><h3>${escape(item.title)}</h3></div><p>${escape(item.organization||item.audience||'')}</p><b>→</b></article>`).join('')
+        :'<p class="status">공개 가능한 강의 이력을 준비 중입니다.</p>';
+    });
+  </script>
+</body>
+</html>
