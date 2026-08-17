@@ -12,3 +12,10 @@ body:has(.program-grid) .page-intro p:last-child{max-width:none;white-space:nowr
 .about-body .lead{font-size:clamp(26px,2.65vw,38px);line-height:1.32;letter-spacing:-.035em;max-width:780px}.about-body .lead+p{font-size:16px;line-height:1.75;max-width:760px}
 @media(max-width:900px){.footer-inquiry span{white-space:normal}body:has(.program-grid) .page-intro p:last-child{white-space:normal;font-size:18px}.about-body .lead{font-size:clamp(25px,7vw,32px);line-height:1.35}.about-body .lead+p{font-size:15px;line-height:1.7}}
 body{font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,system-ui,"Noto Sans KR","Malgun Gothic",sans-serif}
+.exploring-row{display:grid;grid-template-columns:58% 42%;border-bottom:1px solid var(--line)}
+.exploring-row .exploring{width:auto;min-width:0}
+.exploring-video{padding:28px 34px 32px;min-width:0}
+.exploring-video .section-head{margin-bottom:18px}
+.exploring-video .featured-video{margin-bottom:0;min-height:220px}
+.video-thumb img{display:block;width:100%;height:100%;object-fit:cover}
+@media(max-width:900px){.exploring-row{display:block}.exploring-video{padding:28px 20px 40px}.exploring-video .featured-video{min-height:0}}
