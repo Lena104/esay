@@ -15,12 +15,16 @@ jobs:
         with:
           node-version: 22
       - name: Sync YouTube
+        id: youtube
+        continue-on-error: true
         run: node scripts/sync-youtube.mjs
         env:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
           YOUTUBE_PLAYLIST_ID: ${{ vars.YOUTUBE_PLAYLIST_ID }}
           YOUTUBE_MAX_RESULTS: ${{ vars.YOUTUBE_MAX_RESULTS }}
       - name: Sync Calendar
+        id: calendar
+        continue-on-error: true
         run: node scripts/sync-calendar.mjs
         env:
           GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
@@ -34,3 +38,18 @@ jobs:
           git add data/lecture-history.json data/canva-videos.json
           git commit -m "chore: sync public ESAY content"
           git push
+      - name: Report sync failures
+        if: always()
+        env:
+          YOUTUBE_OUTCOME: ${{ steps.youtube.outcome }}
+          CALENDAR_OUTCOME: ${{ steps.calendar.outcome }}
+        run: |
+          if [ "$YOUTUBE_OUTCOME" = "failure" ]; then
+            echo "::error::YouTube content sync failed. Successful calendar changes were preserved."
+          fi
+          if [ "$CALENDAR_OUTCOME" = "failure" ]; then
+            echo "::error::Calendar content sync failed. Successful YouTube changes were preserved."
+          fi
+          if [ "$YOUTUBE_OUTCOME" = "failure" ] || [ "$CALENDAR_OUTCOME" = "failure" ]; then
+            exit 1
+          fi
