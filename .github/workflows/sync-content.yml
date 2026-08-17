@@ -6,6 +6,7 @@ on:
     - cron: '20 18 * * *'
 permissions:
   contents: write
+  deployments: write
 jobs:
   sync:
     runs-on: ubuntu-latest
@@ -38,6 +39,21 @@ jobs:
           git add data/lecture-history.json data/canva-videos.json
           git commit -m "chore: sync public ESAY content"
           git push
+      - name: Prepare public files
+        shell: bash
+        run: |
+          mkdir -p public-dist/data
+          cp index.html 404.html about.html notes.html training.html work.html public-dist/
+          cp robots.txt sitemap.xml public-dist/
+          cp -R css js public-dist/
+          cp data/canva-videos.json data/lecture-history.json data/notes.json data/projects.json public-dist/data/
+      - name: Deploy synced content
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy public-dist --project-name=esay --branch=main
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
       - name: Report sync failures
         if: always()
         env:
