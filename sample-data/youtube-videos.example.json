@@ -1,0 +1,23 @@
+[
+  {
+    "id": "VIDEO_ID_EXAMPLE_01",
+    "title": "Canva 오디오북 만들기",
+    "publishedAt": "2026-08-16T09:00:00Z",
+    "thumbnailUrl": "https://i.ytimg.com/vi/VIDEO_ID_EXAMPLE_01/hqdefault.jpg",
+    "videoUrl": "https://www.youtube.com/watch?v=VIDEO_ID_EXAMPLE_01",
+    "playlistId": "PLAYLIST_ID_PLACEHOLDER",
+    "description": "템플릿부터 녹화와 공유까지 오디오북 제작 흐름을 살펴봅니다.",
+    "position": 0
+  },
+  {
+    "id": "VIDEO_ID_EXAMPLE_02",
+    "title": "Canva AI 기능 살펴보기",
+    "publishedAt": "2026-08-07T09:00:00Z",
+    "thumbnailUrl": "https://i.ytimg.com/vi/VIDEO_ID_EXAMPLE_02/hqdefault.jpg",
+    "videoUrl": "https://www.youtube.com/watch?v=VIDEO_ID_EXAMPLE_02",
+    "playlistId": "PLAYLIST_ID_PLACEHOLDER",
+    "description": "교육과 콘텐츠 제작에 연결할 수 있는 기능을 정리합니다.",
+    "position": 1
+  }
+]
+

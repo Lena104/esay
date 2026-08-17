@@ -1,0 +1,4 @@
+[
+  {"id":"lecture-example-2026-08-01","date":"2026-08-01","endDate":"2026-08-01","title":"생성형 AI 업무 활용 교육","organization":"기관명 예시","audience":"공공기관 실무자","topic":"AI Workflow","type":"Workshop","calendarSource":"offline-training","allDay":true},
+  {"id":"lecture-example-2026-07-18","date":"2026-07-18","endDate":"2026-07-18","title":"Canva와 AI 수업 설계","organization":"교육기관 예시","audience":"교사","topic":"Canva for Education","type":"Training","calendarSource":"online-training","allDay":false}
+]
