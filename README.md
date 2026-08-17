@@ -38,7 +38,7 @@
 - 시각 방향은 밝고 화사한 **Editorial Portfolio**입니다.
 - Google Workspace Admin Toolkit을 대표 작업으로, Pin Canvas는 여러 실험 중 하나로 다룹니다.
 - Canva YouTube 재생목록과 2개의 Google Calendar를 GitHub Actions로 동기화합니다.
-- Calendar 공개 조건은 `visibility=public`이면서 제목이 `[ESAY]`로 시작하는 과거 일정입니다.
+- Calendar 공개 조건은 `visibility=public`이면서 제목이 `[강의]`로 시작하는 과거 일정입니다. 제목 앞·뒤 괄호는 기관명으로 분리합니다.
 - 정적 사이트, 반응형, 접근성, 성능, 콘텐츠/레이아웃 분리를 우선합니다.
 
 ## 참고 이미지 주의
