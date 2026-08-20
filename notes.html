@@ -1,1 +1,59 @@
-<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Field Notes — ESAY</title><meta name="description" content="Canva, AI, 만들기와 교육에 관한 윤명희의 필드 노트."><link rel="stylesheet" href="css/style.css"></head><body><a class="skip-link" href="#main">본문 바로가기</a><header class="mobile-header"><a class="brand" href="index.html">ESAY</a><a href="index.html">HOME →</a></header><aside class="sidebar"><a class="brand" href="index.html">ESAY</a><nav><a href="work.html"><b>01</b><span>WORK</span></a><a href="notes.html"><b>02</b><span>NOTES</span></a><a href="training.html"><b>03</b><span>TRAINING</span></a><a href="about.html"><b>04</b><span>ABOUT</span></a></nav></aside><main id="main" class="page-shell"><header class="page-intro"><p class="eyebrow">02 / FIELD NOTES</p><h1>NOTES</h1><p>완성된 답보다, 배우고 만들며 발견한 단서를 기록합니다.</p></header><section class="full-list" data-notes><p class="status">노트를 불러오는 중입니다.</p></section></main><script type="module">import{loadData}from'./js/data-loader.js';const e=document.querySelector('[data-notes]'),x=s=>String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));loadData('notes.json',[]).then(a=>e.innerHTML=a.length?a.map(n=>`<article><time>${x(n.date)}</time><div><p class="eyebrow">${x(n.category)}</p><h3>${x(n.title)}</h3></div><p>${x(n.summary)}</p><b>→</b></article>`).join(''):'<p class="status">새로운 필드 노트를 준비 중입니다.</p>');</script></body></html>
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Field Notes — ESAY</title>
+  <meta name="description" content="Canva, AI, 만들기와 교육에 관한 윤명희의 필드 노트.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">본문 바로가기</a>
+  <header class="mobile-header"><a class="brand" href="index.html">ESAY</a><a href="index.html">HOME →</a></header>
+  <aside class="sidebar">
+    <a class="brand" href="index.html">ESAY</a>
+    <nav>
+      <a href="work.html"><b>01</b><span>WORK</span></a>
+      <a href="notes.html"><b>02</b><span>NOTES</span></a>
+      <a href="training.html"><b>03</b><span>TRAINING</span></a>
+      <a href="about.html"><b>04</b><span>ABOUT</span></a>
+    </nav>
+  </aside>
+  <main id="main" class="page-shell">
+    <header class="page-intro">
+      <p class="eyebrow">02 / FIELD NOTES</p>
+      <h1>NOTES</h1>
+      <p>완성된 답보다, 배우고 만들며 발견한 단서를 기록합니다.</p>
+    </header>
+    <div class="section-head notes-source">
+      <p class="eyebrow">BRUNCH MAGAZINE / 써보는 중</p>
+      <a href="https://brunch.co.kr/magazine/trying" target="_blank" rel="noopener noreferrer">Brunch에서 모든 글 보기 <span>→</span></a>
+    </div>
+    <section class="full-list" data-notes><p class="status">노트를 불러오는 중입니다.</p></section>
+  </main>
+  <script type="module">
+    import { loadData } from './js/data-loader.js';
+    const list = document.querySelector('[data-notes]');
+    const escapeHtml = (value) => String(value).replace(/[&<>"']/g, (character) => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    })[character]);
+    const safeUrl = (value) => {
+      try {
+        const url = new URL(value);
+        return ['https:', 'http:'].includes(url.protocol) ? url.href : '';
+      } catch {
+        return '';
+      }
+    };
+
+    loadData('notes.json', []).then((notes) => {
+      list.innerHTML = notes.length ? notes.map((note) => {
+        const href = safeUrl(note.externalUrl);
+        const tag = href ? 'a' : 'div';
+        const linkAttributes = href ? ` href="${escapeHtml(href)}" target="_blank" rel="noopener noreferrer"` : '';
+        return `<${tag} class="note-row"${linkAttributes}><time>${escapeHtml(note.date)}</time><div><p class="eyebrow">${escapeHtml(note.category)}</p><h3>${escapeHtml(note.title)}</h3></div><p>${escapeHtml(note.summary)}</p><b aria-hidden="true">→</b></${tag}>`;
+      }).join('') : '<p class="status">새로운 필드 노트를 준비 중입니다.</p>';
+    });
+  </script>
+</body>
+</html>
