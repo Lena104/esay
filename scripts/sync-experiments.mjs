@@ -33,6 +33,12 @@ async function source() {
 
 const truthy = (value) => ['true', '1', 'yes', 'y'].includes(String(value || '').trim().toLowerCase());
 const url = (value) => /^https:\/\//i.test(String(value || '').trim()) ? String(value).trim() : null;
+const thumbnailUrl = (value) => {
+  const safe = url(value);
+  if (!safe) return null;
+  const driveId = safe.match(/drive\.google\.com\/file\/d\/([^/]+)/i)?.[1];
+  return driveId ? `https://drive.google.com/uc?export=view&id=${driveId}` : safe;
+};
 
 function normalize(raw) {
   const values = raw.values || raw;
@@ -50,7 +56,7 @@ function normalize(raw) {
       summary: String(row.summary || '').trim(),
       url: url(row.url),
       sourceUrl: url(row.source_url),
-      thumbnailUrl: url(row.thumbnail_url),
+      thumbnailUrl: thumbnailUrl(row.thumbnail_url),
       tags: String(row.tags || '').split('|').map((tag) => tag.trim()).filter(Boolean),
       status: String(row.status || 'ACTIVE').trim().toUpperCase(),
       featured: truthy(row.featured),
