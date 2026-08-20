@@ -11,7 +11,7 @@ function titleParts(summary=''){
   if(trailing)return{title:trailing[1].trim(),organization:trailing[2].trim()};
   return{title:clean};
 }
-function normalize(raw){const now=new Date(),seen=new Set();return (raw.items||raw).map(e=>{const start=e.start?.date||e.start?.dateTime||e.date,end=e.end?.date||e.end?.dateTime||e.endDate||start,summary=String(e.summary||e.title||'');if(e.status==='cancelled'||e.visibility!=='public'||!summary.startsWith('[강의]')||new Date(end)>=now)return null;const id=e.id;if(!id||seen.has(id))return null;seen.add(id);return{id,date:String(start).slice(0,10),endDate:String(end).slice(0,10),...titleParts(summary),...meta(e.description),calendarSource:e.calendarSource||'public-training',allDay:Boolean(e.start?.date||e.allDay)}}).filter(Boolean).sort((a,b)=>b.date.localeCompare(a.date))}
+function normalize(raw){const now=new Date(),seen=new Set();return (raw.items||raw).map(e=>{const start=e.start?.date||e.start?.dateTime||e.date,end=e.end?.date||e.end?.dateTime||e.endDate||start,summary=String(e.summary||e.title||''),privateVisibility=['private','confidential'].includes(e.visibility);if(e.status==='cancelled'||privateVisibility||!summary.startsWith('[강의]')||new Date(end)>=now)return null;const id=e.id;if(!id||seen.has(id))return null;seen.add(id);return{id,date:String(start).slice(0,10),endDate:String(end).slice(0,10),...titleParts(summary),...meta(e.description),calendarSource:e.calendarSource||'public-training',allDay:Boolean(e.start?.date||e.allDay)}}).filter(Boolean).sort((a,b)=>b.date.localeCompare(a.date))}
 async function manualHistory(){
   const data=JSON.parse(await fs.readFile(manualInput,'utf8'));
   if(!Array.isArray(data))throw new Error('lecture-history.manual.json은 배열이어야 합니다.');
@@ -34,11 +34,12 @@ async function accessToken(){
 async function source(){
   if(fixture)return JSON.parse(await fs.readFile(fixture,'utf8'));
   if(ids.length!==2)throw new Error('GOOGLE_CALENDAR_ID_1과 GOOGLE_CALENDAR_ID_2가 필요합니다.');
-  const token=await accessToken(),all=[];
+  const token=await accessToken(),all=[];let accessibleCalendars=0;
   for(const [index,id] of ids.entries()){
-    let pageToken;
-    do{const url=new URL(`https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(id)}/events`);url.search=new URLSearchParams({singleEvents:'true',orderBy:'startTime',timeMax:new Date().toISOString(),maxResults:'2500',...(pageToken?{pageToken}:{})});const response=await fetch(url,{headers:{authorization:`Bearer ${token}`}});if(!response.ok)throw new Error(`Calendar API ${response.status}`);const page=await response.json();all.push(...(page.items||[]).map(item=>({...item,calendarSource:`calendar-${index+1}`})));pageToken=page.nextPageToken}while(pageToken)
+    let pageToken;const calendarItems=[];
+    try{do{const url=new URL(`https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(id)}/events`);url.search=new URLSearchParams({singleEvents:'true',orderBy:'startTime',timeMax:new Date().toISOString(),maxResults:'2500',...(pageToken?{pageToken}:{})});const response=await fetch(url,{headers:{authorization:`Bearer ${token}`}});if(!response.ok)throw new Error(`Calendar API ${response.status}`);const page=await response.json();calendarItems.push(...(page.items||[]).map(item=>({...item,calendarSource:`calendar-${index+1}`})));pageToken=page.nextPageToken}while(pageToken);accessibleCalendars+=1;all.push(...calendarItems)}catch(error){console.warn(`캘린더 ${index+1} 조회 실패: ${error.message}`)}
   }
+  if(!accessibleCalendars)throw new Error('연결 가능한 캘린더가 없습니다. 캘린더 ID와 서비스 계정 공유 설정을 확인하세요.');
   return {items:all};
 }
 try{const manual=await manualHistory();if(manualOnly){await fs.writeFile(output,JSON.stringify(mergeHistory(manual,[]),null,2)+'\n');console.log(`수동 이력 ${manual.length}개로 공개 데이터를 생성했습니다.`)}else{const synced=normalize(await source());if(!synced.length)throw new Error('공개 조건을 통과한 일정이 0건이므로 기존 파일을 보존합니다.');const data=mergeHistory(manual,synced);await fs.writeFile(output,JSON.stringify(data,null,2)+'\n');console.log(`수동 ${manual.length}개와 자동 ${synced.length}개를 합쳐 ${data.length}개 강의를 동기화했습니다.`)}}catch(error){console.error(error.message);process.exitCode=1}
