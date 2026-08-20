@@ -3,6 +3,7 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 
 const output = path.resolve('data/experiments.json');
+const imageDirectory = path.resolve('images/experiments');
 const fixture = process.env.EXPERIMENTS_FIXTURE;
 const spreadsheetId = process.env.GOOGLE_EXPERIMENTS_SHEET_ID;
 const sheetName = process.env.GOOGLE_EXPERIMENTS_SHEET_NAME || 'Experiments';
@@ -66,8 +67,34 @@ function normalize(raw) {
   }).filter(Boolean).sort((a, b) => a.sortOrder - b.sortOrder || a.title.localeCompare(b.title, 'ko'));
 }
 
+async function cacheThumbnail(item) {
+  if (!item.thumbnailUrl) return item;
+  try {
+    const response = await fetch(item.thumbnailUrl, { redirect: 'follow' });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const contentType = (response.headers.get('content-type') || '').split(';')[0].toLowerCase();
+    const extension = new Map([
+      ['image/png', 'png'],
+      ['image/jpeg', 'jpg'],
+      ['image/webp', 'webp'],
+      ['image/gif', 'gif'],
+    ]).get(contentType);
+    if (!extension) throw new Error(`지원하지 않는 형식: ${contentType || 'unknown'}`);
+    const bytes = Buffer.from(await response.arrayBuffer());
+    if (!bytes.length || bytes.length > 10 * 1024 * 1024) throw new Error(`잘못된 이미지 크기: ${bytes.length} bytes`);
+    await fs.mkdir(imageDirectory, { recursive: true });
+    const filename = `${item.id}.${extension}`;
+    await fs.writeFile(path.join(imageDirectory, filename), bytes);
+    return { ...item, thumbnailUrl: `images/experiments/${filename}` };
+  } catch (error) {
+    console.warn(`[${item.id}] 썸네일을 저장하지 못해 기본 카드로 표시합니다: ${error.message}`);
+    return { ...item, thumbnailUrl: null };
+  }
+}
+
 try {
-  const data = normalize(await source());
+  const normalized = normalize(await source());
+  const data = await Promise.all(normalized.map(cacheThumbnail));
   if (!data.length) throw new Error('공개 가능한 실험 도구가 0건이므로 기존 파일을 보존합니다.');
   await fs.writeFile(output, `${JSON.stringify(data, null, 2)}\n`);
   console.log(`${data.length}개 Small Experiments 도구를 동기화했습니다.`);

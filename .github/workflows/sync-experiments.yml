@@ -28,10 +28,10 @@ jobs:
           GOOGLE_EXPERIMENTS_SHEET_ID: ${{ vars.GOOGLE_EXPERIMENTS_SHEET_ID }}
       - name: Commit changed experiments
         run: |
-          if git diff --quiet -- data/experiments.json; then exit 0; fi
+          if git diff --quiet -- data/experiments.json images/experiments; then exit 0; fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/experiments.json
+          git add data/experiments.json images/experiments
           git commit -m "chore: sync Small Experiments"
           git push
       - name: Prepare public files
@@ -41,6 +41,7 @@ jobs:
           cp index.html 404.html about.html notes.html training.html work.html work-admin-toolkit.html work-small-experiments.html public-dist/
           cp robots.txt sitemap.xml public-dist/
           cp -R css js public-dist/
+          cp -R images public-dist/
           cp data/canva-videos.json data/experiments.json data/lecture-history.json data/notes.json data/projects.json public-dist/data/
       - name: Deploy synced experiments
         uses: cloudflare/wrangler-action@v3
