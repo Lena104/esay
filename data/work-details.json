@@ -1,4 +1,68 @@
 [
-  {"projectId":"canva-education","sectionId":"intro","sectionType":"INTRO","heading":"Canva Education","body":"Canva를 단순한 디자인 도구가 아니라 생각을 표현하고 배움을 공유하는 교육 도구로 탐구합니다.","imageUrl":null,"buttonLabel":"","buttonUrl":null,"sortOrder":1},
-  {"projectId":"google-for-education","sectionId":"intro","sectionType":"INTRO","heading":"Google for Education","body":"Google Workspace for Education을 수업과 학교 업무에 적용하고 필요한 도구를 직접 만들어 실험합니다.","imageUrl":null,"buttonLabel":"","buttonUrl":null,"sortOrder":1}
+  {
+    "projectId": "canva-education",
+    "sectionId": "intro",
+    "sectionType": "INTRO",
+    "heading": "Canva Education",
+    "body": "Canva를 단순한 디자인 도구가 아니라 생각을 표현하고 배움을 공유하는 교육 도구로 탐구합니다.",
+    "imageUrl": null,
+    "buttonLabel": "",
+    "buttonUrl": null,
+    "sortOrder": 1
+  },
+  {
+    "projectId": "canva-education",
+    "sectionId": "approach",
+    "sectionType": "TEXT",
+    "heading": "현장에서 시작하는 Canva",
+    "body": "교육 현장에서 직접 사용하고 워크숍과 콘텐츠 제작으로 연결한 경험을 기록합니다.",
+    "imageUrl": null,
+    "buttonLabel": "",
+    "buttonUrl": null,
+    "sortOrder": 2
+  },
+  {
+    "projectId": "canva-education",
+    "sectionId": "works",
+    "sectionType": "LINK",
+    "heading": "관련 프로젝트와 콘텐츠",
+    "body": "Canva Education과 관련된 결과물과 콘텐츠를 연결합니다.",
+    "imageUrl": null,
+    "buttonLabel": "콘텐츠 보기",
+    "buttonUrl": null,
+    "sortOrder": 3
+  },
+  {
+    "projectId": "google-for-education",
+    "sectionId": "intro",
+    "sectionType": "INTRO",
+    "heading": "Google for Education",
+    "body": "Google Workspace for Education을 수업과 학교 업무에 적용하고 필요한 도구를 직접 만들어 실험합니다.",
+    "imageUrl": null,
+    "buttonLabel": "",
+    "buttonUrl": null,
+    "sortOrder": 1
+  },
+  {
+    "projectId": "google-for-education",
+    "sectionId": "approach",
+    "sectionType": "TEXT",
+    "heading": "배움과 업무를 연결하는 도구",
+    "body": "Google Sheets와 Apps Script를 활용해 반복 업무를 줄이고 새로운 학습 경험을 설계합니다.",
+    "imageUrl": null,
+    "buttonLabel": "",
+    "buttonUrl": null,
+    "sortOrder": 2
+  },
+  {
+    "projectId": "google-for-education",
+    "sectionId": "works",
+    "sectionType": "LINK",
+    "heading": "관련 프로젝트와 도구",
+    "body": "Google for Education과 관련된 프로젝트와 학습 도구를 연결합니다.",
+    "imageUrl": null,
+    "buttonLabel": "도구 보기",
+    "buttonUrl": null,
+    "sortOrder": 3
+  }
 ]
