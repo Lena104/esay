@@ -1,0 +1,35 @@
+name: Sync Small Experiments
+
+on:
+  repository_dispatch:
+    types: [experiments-sheet-updated]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-small-experiments
+  cancel-in-progress: true
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Read Experiments sheet
+        run: node scripts/sync-experiments.mjs
+        env:
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+          GOOGLE_EXPERIMENTS_SHEET_ID: ${{ vars.GOOGLE_EXPERIMENTS_SHEET_ID }}
+      - name: Commit changed experiments
+        run: |
+          if git diff --quiet -- data/experiments.json; then exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/experiments.json
+          git commit -m "chore: sync Small Experiments"
+          git push

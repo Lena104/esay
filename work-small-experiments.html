@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="ko">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Small Experiments — ESAY</title><meta name="description" content="현장의 작은 문제를 직접 사용할 수 있는 도구로 바꾸는 ESAY의 실험."><link rel="stylesheet" href="css/style.css"></head>
+<body>
+  <a class="skip-link" href="#main">본문 바로가기</a>
+  <header class="mobile-header"><a class="brand" href="index.html">ESAY</a><a href="work.html">WORK →</a></header>
+  <aside class="sidebar"><a class="brand" href="index.html">ESAY</a><nav aria-label="주요 메뉴"><a href="work.html"><b>01</b><span>WORK</span></a><a href="notes.html"><b>02</b><span>NOTES</span></a><a href="training.html"><b>03</b><span>TRAINING</span></a><a href="about.html"><b>04</b><span>ABOUT</span></a><a href="index.html#contact"><b>→</b><span>CONTACT</span></a></nav></aside>
+  <main id="main" class="page-shell experiments-page">
+    <header class="work-detail-hero experiments-hero">
+      <p class="eyebrow">01 / WORK / EXPERIMENT</p>
+      <h1>Small<br>Experiments</h1>
+      <p class="work-detail-lead">현장에서 발견한 작은 문제를 직접 사용할 수 있는 도구로 실험합니다.</p>
+    </header>
+    <section class="experiments-archive" aria-labelledby="experiments-title">
+      <div class="section-head"><p id="experiments-title" class="eyebrow">TOOLS &amp; LEARNING LABS</p><p class="experiments-count" data-experiments-count></p></div>
+      <div class="experiment-filters" data-experiment-filters aria-label="도구 분류"></div>
+      <div class="experiment-grid" data-experiments><p class="status">실험 도구를 불러오는 중입니다.</p></div>
+    </section>
+  </main>
+  <script type="module">
+    import { loadData } from './js/data-loader.js';
+    const grid = document.querySelector('[data-experiments]');
+    const filters = document.querySelector('[data-experiment-filters]');
+    const count = document.querySelector('[data-experiments-count]');
+    const escapeHtml = (value) => String(value ?? '').replace(/[&<>"']/g, (character) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[character]);
+    const safeUrl = (value) => { try { const url = new URL(value); return url.protocol === 'https:' ? url.href : ''; } catch { return ''; } };
+    let experiments = [];
+
+    function render(category = 'ALL') {
+      const visible = category === 'ALL' ? experiments : experiments.filter((item) => item.category === category);
+      count.textContent = `${visible.length} EXPERIMENT${visible.length === 1 ? '' : 'S'}`;
+      grid.innerHTML = visible.length ? visible.map((item, index) => {
+        const appUrl = safeUrl(item.url), sourceUrl = safeUrl(item.sourceUrl), imageUrl = safeUrl(item.thumbnailUrl);
+        const visual = imageUrl ? `<img src="${escapeHtml(imageUrl)}" alt="" loading="lazy">` : `<span>${escapeHtml(item.category)}</span><b>${String(index + 1).padStart(2, '0')}</b>`;
+        const actions = appUrl ? `<a class="primary-action" href="${escapeHtml(appUrl)}" target="_blank" rel="noopener noreferrer">도구 사용하기 <span>↗</span></a>` : '<span class="experiment-pending">LINK COMING SOON</span>';
+        const source = sourceUrl ? `<a class="text-action" href="${escapeHtml(sourceUrl)}" target="_blank" rel="noopener noreferrer">프로젝트 보기 <span>→</span></a>` : '';
+        return `<article class="experiment-card"><div class="experiment-visual">${visual}</div><div class="experiment-copy"><div><p class="eyebrow">${escapeHtml(item.category)} / ${escapeHtml(item.status)}</p><h2>${escapeHtml(item.title)}</h2><p>${escapeHtml(item.summary)}</p></div><ul>${(item.tags || []).map((tag) => `<li>${escapeHtml(tag)}</li>`).join('')}</ul><div class="experiment-actions">${actions}${source}</div></div></article>`;
+      }).join('') : '<p class="status">이 분류의 도구를 준비 중입니다.</p>';
+    }
+
+    loadData('experiments.json', []).then((items) => {
+      experiments = items;
+      const categories = ['ALL', ...new Set(items.map((item) => item.category))];
+      filters.innerHTML = categories.map((category, index) => `<button type="button" class="experiment-filter${index === 0 ? ' active' : ''}" data-category="${escapeHtml(category)}">${escapeHtml(category)}</button>`).join('');
+      filters.addEventListener('click', (event) => { const button = event.target.closest('button'); if (!button) return; filters.querySelectorAll('button').forEach((item) => item.classList.toggle('active', item === button)); render(button.dataset.category); });
+      render();
+    });
+  </script>
+</body>
+</html>
