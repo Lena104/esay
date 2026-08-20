@@ -62,7 +62,7 @@ function normalizeProjects(raw) {
     let detailUrl = null;
     let external = false;
     if (linkType === 'DETAIL') detailUrl = `work-detail.html?id=${id}`;
-    if (linkType === 'CUSTOM') detailUrl = localUrl(row.link_url) || httpsUrl(row.link_url);
+    if (linkType === 'CUSTOM') detailUrl = localUrl(row.link_url) || httpsUrl(row.link_url) || (id === 'pincanvas' ? 'work-pincanvas.html' : null);
     if (linkType === 'EXTERNAL') { detailUrl = httpsUrl(row.link_url); external = Boolean(detailUrl); }
     return {
       id,
