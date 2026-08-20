@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: write
+  deployments: write
 
 concurrency:
   group: sync-small-experiments
@@ -33,3 +34,18 @@ jobs:
           git add data/experiments.json
           git commit -m "chore: sync Small Experiments"
           git push
+      - name: Prepare public files
+        shell: bash
+        run: |
+          mkdir -p public-dist/data
+          cp index.html 404.html about.html notes.html training.html work.html work-admin-toolkit.html work-small-experiments.html public-dist/
+          cp robots.txt sitemap.xml public-dist/
+          cp -R css js public-dist/
+          cp data/canva-videos.json data/experiments.json data/lecture-history.json data/notes.json data/projects.json public-dist/data/
+      - name: Deploy synced experiments
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy public-dist --project-name=esay --branch=main
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
