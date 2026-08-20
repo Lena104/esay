@@ -25,10 +25,10 @@ jobs:
         shell: bash
         run: |
           mkdir -p public-dist/data
-          cp index.html 404.html about.html notes.html training.html work.html work-admin-toolkit.html public-dist/
+          cp index.html 404.html about.html notes.html training.html work.html work-admin-toolkit.html work-small-experiments.html public-dist/
           cp robots.txt sitemap.xml public-dist/
           cp -R css js public-dist/
-          cp data/canva-videos.json data/lecture-history.json data/notes.json data/projects.json public-dist/data/
+          cp data/canva-videos.json data/experiments.json data/lecture-history.json data/notes.json data/projects.json public-dist/data/
 
       - name: Deploy production site
         uses: cloudflare/wrangler-action@v3
