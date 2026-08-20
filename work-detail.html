@@ -13,6 +13,7 @@
     const root = document.querySelector('[data-project-detail]');
     const escapeHtml = (value) => String(value ?? '').replace(/[&<>"']/g, (character) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[character]);
     const safeUrl = (value) => { const text = String(value || ''); if (/^[a-z0-9-]+\.html(?:\?id=[a-z0-9-]+)?$/i.test(text) || /^images\/work\/[a-z0-9-]+\.(png|jpe?g|webp|gif)$/i.test(text)) return text; try { const parsed = new URL(text); return parsed.protocol === 'https:' ? parsed.href : ''; } catch { return ''; } };
+    const youtubeEmbedUrl = (value) => { try { const url = new URL(value), host = url.hostname.replace(/^www\./, ''); let videoId = ''; if (host === 'youtu.be') videoId = url.pathname.split('/').filter(Boolean)[0] || ''; if (host === 'youtube.com' || host === 'm.youtube.com') { if (url.pathname === '/watch') videoId = url.searchParams.get('v') || ''; else if (/^\/(embed|shorts)\//.test(url.pathname)) videoId = url.pathname.split('/')[2] || ''; } return /^[a-zA-Z0-9_-]{11}$/.test(videoId) ? `https://www.youtube-nocookie.com/embed/${videoId}` : ''; } catch { return ''; } };
     const id = new URLSearchParams(location.search).get('id') || '';
     const [projects, allSections] = await Promise.all([loadData('projects.json', []), loadData('work-details.json', [])]);
     const project = projects.find((item) => item.id === id && item.linkType === 'DETAIL');
@@ -28,8 +29,8 @@
       const tags = (project.technologies || []).map((tag) => `<li>${escapeHtml(tag)}</li>`).join('');
       const hero = `<header class="work-detail-hero dynamic-work-hero"><div><p class="eyebrow">${escapeHtml(project.category)} / ${escapeHtml(project.status)}</p><h1>${escapeHtml(project.title)}</h1><p class="work-detail-lead">${escapeHtml(intro?.body || project.summary)}</p><ul class="work-tags">${tags}</ul></div>${heroImage ? `<img src="${escapeHtml(heroImage)}" alt="" loading="eager">` : ''}</header>`;
       const body = contentSections.map((section, index) => {
-        const image = safeUrl(section.imageUrl), button = safeUrl(section.buttonUrl);
-        const visual = image ? `<div class="dynamic-work-visual"><img src="${escapeHtml(image)}" alt="" loading="lazy"></div>` : `<div class="dynamic-work-visual placeholder"><b>${String(index + 1).padStart(2, '0')}</b><span>${escapeHtml(section.sectionType)}</span></div>`;
+        const image = safeUrl(section.imageUrl), button = safeUrl(section.buttonUrl), video = section.sectionType === 'VIDEO' ? youtubeEmbedUrl(button) : '';
+        const visual = video ? `<div class="tool-video"><iframe src="${escapeHtml(video)}" title="${escapeHtml(section.heading || project.title)} 영상" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>` : image ? `<div class="dynamic-work-visual"><img src="${escapeHtml(image)}" alt="" loading="lazy"></div>` : `<div class="dynamic-work-visual placeholder"><b>${String(index + 1).padStart(2, '0')}</b><span>${escapeHtml(section.sectionType)}</span></div>`;
         const action = button && section.buttonLabel ? `<a class="primary-action" href="${escapeHtml(button)}"${button.startsWith('https://') ? ' target="_blank" rel="noopener noreferrer"' : ''}>${escapeHtml(section.buttonLabel)} <span>→</span></a>` : '';
         return `<section class="dynamic-work-section${index % 2 ? ' alt' : ''}">${visual}<div class="tool-copy"><p class="eyebrow">${escapeHtml(section.sectionType)}</p><h2>${escapeHtml(section.heading)}</h2><p>${escapeHtml(section.body)}</p>${action ? `<div class="tool-actions">${action}</div>` : ''}</div></section>`;
       }).join('');

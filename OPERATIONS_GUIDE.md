@@ -132,6 +132,14 @@ GitHub의 `main` 브랜치에 변경이 들어가면 자동으로 배포됩니�
 - `image_url`: 섹션 이미지
 - `button_label`, `button_url`: 선택 버튼
 
+YouTube 영상을 페이지 안에서 바로 재생하려면 다음처럼 입력합니다.
+
+- `section_type`: `VIDEO`
+- `button_url`: `https://www.youtube.com/watch?v=...` 또는 `https://youtu.be/...` 형식의 영상 주소
+- `button_label`: 선택값. 입력하면 플레이어 아래에 YouTube 원본 링크 버튼도 표시
+
+일반 영상, YouTube Shorts, `youtu.be` 공유 주소를 지원합니다. 재생목록 주소는 영상 한 개의 주소가 아니므로 임베드되지 않습니다.
+
 PinCanvas처럼 완전히 다른 화면 구성이 필요한 프로젝트는 `CUSTOM` 방식으로 전용 HTML과 CSS를 만들어야 합니다. 일반적인 소개·이미지·버튼 조합은 `DETAIL`로 추가하면 새 코드를 작성하지 않아도 됩니다.
 
 ### `Experiments` 탭
@@ -255,4 +263,3 @@ GitHub 저장소에서 **Settings → Secrets and variables → Actions**로 이
 - [ ] Cloudflare 배포가 성공했는가?
 - [ ] 데스크톱과 모바일에서 확인했는가?
 - [ ] 외부 링크와 이미지가 정상적으로 열리는가?
-
