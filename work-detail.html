@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ko">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Project — ESAY</title><meta name="description" content="ESAY 프로젝트 상세 페이지."><link rel="stylesheet" href="css/style.css"></head>
+<body>
+  <a class="skip-link" href="#main">본문 바로가기</a>
+  <header class="mobile-header"><a class="brand" href="index.html">ESAY</a><a href="work.html">WORK →</a></header>
+  <aside class="sidebar"><a class="brand" href="index.html">ESAY</a><nav aria-label="주요 메뉴"><a href="work.html"><b>01</b><span>WORK</span></a><a href="notes.html"><b>02</b><span>NOTES</span></a><a href="training.html"><b>03</b><span>TRAINING</span></a><a href="about.html"><b>04</b><span>ABOUT</span></a><a href="index.html#contact"><b>→</b><span>CONTACT</span></a></nav></aside>
+  <main id="main" class="page-shell work-detail dynamic-work-detail">
+    <div data-project-detail><p class="status">프로젝트를 불러오는 중입니다.</p></div>
+  </main>
+  <script type="module">
+    import { loadData } from './js/data-loader.js';
+    const root = document.querySelector('[data-project-detail]');
+    const escapeHtml = (value) => String(value ?? '').replace(/[&<>"']/g, (character) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[character]);
+    const safeUrl = (value) => { const text = String(value || ''); if (/^[a-z0-9-]+\.html(?:\?id=[a-z0-9-]+)?$/i.test(text) || /^images\/work\/[a-z0-9-]+\.(png|jpe?g|webp|gif)$/i.test(text)) return text; try { const parsed = new URL(text); return parsed.protocol === 'https:' ? parsed.href : ''; } catch { return ''; } };
+    const id = new URLSearchParams(location.search).get('id') || '';
+    const [projects, allSections] = await Promise.all([loadData('projects.json', []), loadData('work-details.json', [])]);
+    const project = projects.find((item) => item.id === id && item.linkType === 'DETAIL');
+    if (!project) {
+      document.title = 'Project not found — ESAY';
+      root.innerHTML = '<section class="work-detail-empty"><p class="eyebrow">PROJECT NOT FOUND</p><h1>프로젝트를 찾을 수 없습니다.</h1><a class="text-action" href="work.html">WORK로 돌아가기 <span>→</span></a></section>';
+    } else {
+      const sections = allSections.filter((item) => item.projectId === id).sort((a, b) => a.sortOrder - b.sortOrder);
+      const intro = sections.find((item) => item.sectionType === 'INTRO');
+      const contentSections = sections.filter((item) => item !== intro);
+      document.title = `${project.title} — ESAY`;
+      const heroImage = safeUrl(project.thumbnailUrl);
+      const tags = (project.technologies || []).map((tag) => `<li>${escapeHtml(tag)}</li>`).join('');
+      const hero = `<header class="work-detail-hero dynamic-work-hero"><div><p class="eyebrow">${escapeHtml(project.category)} / ${escapeHtml(project.status)}</p><h1>${escapeHtml(project.title)}</h1><p class="work-detail-lead">${escapeHtml(intro?.body || project.summary)}</p><ul class="work-tags">${tags}</ul></div>${heroImage ? `<img src="${escapeHtml(heroImage)}" alt="" loading="eager">` : ''}</header>`;
+      const body = contentSections.map((section, index) => {
+        const image = safeUrl(section.imageUrl), button = safeUrl(section.buttonUrl);
+        const visual = image ? `<div class="dynamic-work-visual"><img src="${escapeHtml(image)}" alt="" loading="lazy"></div>` : `<div class="dynamic-work-visual placeholder"><b>${String(index + 1).padStart(2, '0')}</b><span>${escapeHtml(section.sectionType)}</span></div>`;
+        const action = button && section.buttonLabel ? `<a class="primary-action" href="${escapeHtml(button)}"${button.startsWith('https://') ? ' target="_blank" rel="noopener noreferrer"' : ''}>${escapeHtml(section.buttonLabel)} <span>→</span></a>` : '';
+        return `<section class="dynamic-work-section${index % 2 ? ' alt' : ''}">${visual}<div class="tool-copy"><p class="eyebrow">${escapeHtml(section.sectionType)}</p><h2>${escapeHtml(section.heading)}</h2><p>${escapeHtml(section.body)}</p>${action ? `<div class="tool-actions">${action}</div>` : ''}</div></section>`;
+      }).join('');
+      root.innerHTML = `${hero}${body || '<p class="status">상세 내용을 준비 중입니다.</p>'}<div class="dynamic-work-back"><a class="text-action" href="work.html">모든 WORK 보기 <span>→</span></a></div>`;
+      root.querySelectorAll('img').forEach((image) => image.addEventListener('error', () => image.remove(), { once: true }));
+    }
+  </script>
+</body>
+</html>

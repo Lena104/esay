@@ -1,0 +1,4 @@
+[
+  {"projectId":"canva-education","sectionId":"intro","sectionType":"INTRO","heading":"Canva Education","body":"Canva를 단순한 디자인 도구가 아니라 생각을 표현하고 배움을 공유하는 교육 도구로 탐구합니다.","imageUrl":null,"buttonLabel":"","buttonUrl":null,"sortOrder":1},
+  {"projectId":"google-for-education","sectionId":"intro","sectionType":"INTRO","heading":"Google for Education","body":"Google Workspace for Education을 수업과 학교 업무에 적용하고 필요한 도구를 직접 만들어 실험합니다.","imageUrl":null,"buttonLabel":"","buttonUrl":null,"sortOrder":1}
+]

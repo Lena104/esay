@@ -1,0 +1,15 @@
+{
+  "work": {
+    "values": [
+      ["id","title","category","summary","status","technologies","thumbnail_url","link_type","link_url","featured","sort_order","visible","updated_at"],
+      ["canva-education","Canva Education","EDUCATION","Canva 교육 프로젝트","ONGOING","Canva|Education","","DETAIL","","TRUE","1","TRUE",""],
+      ["pincanvas","PinCanvas","BUILD","협업 캔버스","ACTIVE","Canvas","","CUSTOM","work-pincanvas.html","TRUE","2","TRUE",""]
+    ]
+  },
+  "details": {
+    "values": [
+      ["project_id","section_id","section_type","heading","body","image_url","button_label","button_url","sort_order","visible"],
+      ["canva-education","intro","INTRO","Canva Education","소개 내용","","","","1","TRUE"]
+    ]
+  }
+}
