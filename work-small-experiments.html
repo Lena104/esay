@@ -24,18 +24,20 @@
     const count = document.querySelector('[data-experiments-count]');
     const escapeHtml = (value) => String(value ?? '').replace(/[&<>"']/g, (character) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[character]);
     const safeUrl = (value) => { try { const url = new URL(value); return url.protocol === 'https:' ? url.href : ''; } catch { return ''; } };
+    const safeImageUrl = (value) => /^images\/experiments\/[a-z0-9-]+\.(png|jpe?g|webp|gif)$/i.test(String(value || '')) ? value : safeUrl(value);
     let experiments = [];
 
     function render(category = 'ALL') {
       const visible = category === 'ALL' ? experiments : experiments.filter((item) => item.category === category);
       count.textContent = `${visible.length} EXPERIMENT${visible.length === 1 ? '' : 'S'}`;
       grid.innerHTML = visible.length ? visible.map((item, index) => {
-        const appUrl = safeUrl(item.url), sourceUrl = safeUrl(item.sourceUrl), imageUrl = safeUrl(item.thumbnailUrl);
-        const visual = imageUrl ? `<img src="${escapeHtml(imageUrl)}" alt="" loading="lazy">` : `<span>${escapeHtml(item.category)}</span><b>${String(index + 1).padStart(2, '0')}</b>`;
+        const appUrl = safeUrl(item.url), sourceUrl = safeUrl(item.sourceUrl), imageUrl = safeImageUrl(item.thumbnailUrl);
+        const visual = `<span>${escapeHtml(item.category)}</span><b>${String(index + 1).padStart(2, '0')}</b>${imageUrl ? `<img src="${escapeHtml(imageUrl)}" alt="" loading="lazy">` : ''}`;
         const actions = appUrl ? `<a class="primary-action" href="${escapeHtml(appUrl)}" target="_blank" rel="noopener noreferrer">도구 사용하기 <span>↗</span></a>` : '<span class="experiment-pending">LINK COMING SOON</span>';
         const source = sourceUrl ? `<a class="text-action" href="${escapeHtml(sourceUrl)}" target="_blank" rel="noopener noreferrer">프로젝트 보기 <span>→</span></a>` : '';
         return `<article class="experiment-card"><div class="experiment-visual">${visual}</div><div class="experiment-copy"><div><p class="eyebrow">${escapeHtml(item.category)} / ${escapeHtml(item.status)}</p><h2>${escapeHtml(item.title)}</h2><p>${escapeHtml(item.summary)}</p></div><ul>${(item.tags || []).map((tag) => `<li>${escapeHtml(tag)}</li>`).join('')}</ul><div class="experiment-actions">${actions}${source}</div></div></article>`;
       }).join('') : '<p class="status">이 분류의 도구를 준비 중입니다.</p>';
+      grid.querySelectorAll('.experiment-visual img').forEach((image) => image.addEventListener('error', () => image.remove(), { once: true }));
     }
 
     loadData('experiments.json', []).then((items) => {
