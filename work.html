@@ -13,10 +13,10 @@
     import { loadData, fallback } from './js/data-loader.js';
     const list = document.querySelector('[data-work-list]');
     const escapeHtml = (value) => String(value ?? '').replace(/[&<>"']/g, (character) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[character]);
-    const safeLocalUrl = (value) => /^[a-z0-9-]+\.html$/i.test(value || '') ? value : '';
+    const safeLink = (value) => { const text = String(value || ''); if (/^[a-z0-9-]+\.html(?:\?id=[a-z0-9-]+)?$/i.test(text)) return text; try { const parsed = new URL(text); return parsed.protocol === 'https:' ? parsed.href : ''; } catch { return ''; } };
     loadData('projects.json', fallback.projects).then((projects) => {
       list.innerHTML = projects.map((project, index) => {
-        const href = safeLocalUrl(project.detailUrl), tag = href ? 'a' : 'article', attribute = href ? ` href="${escapeHtml(href)}"` : '';
+        const href = safeLink(project.detailUrl), tag = href ? 'a' : 'article', attribute = href ? ` href="${escapeHtml(href)}"${project.external ? ' target="_blank" rel="noopener noreferrer"' : ''}` : '';
         return `<${tag} class="work-row"${attribute}><span>${String(index + 1).padStart(2, '0')}</span><div><p class="eyebrow">${escapeHtml(project.category)}</p><h3>${escapeHtml(project.title)}</h3></div><p>${escapeHtml(project.summary)}</p><b aria-hidden="true">→</b></${tag}>`;
       }).join('');
     });
