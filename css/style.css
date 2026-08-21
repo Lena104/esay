@@ -49,3 +49,34 @@ body{font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFo
 .about-body .eyebrow:not(:first-child){margin-top:32px}
 .about-body ul{padding-left:20px;line-height:1.7}
 @media(max-width:900px){.cover-copy{padding:38px 20px 30px}.cover h1{font-size:clamp(29px,8.2vw,36px);line-height:1.12;margin:16px 0 36px}.identity strong{font-size:19px}.identity span{font-size:11px}.cover-art{height:200px}.poster{height:160px;width:120px;padding:15px;font-size:22px}.sun{width:76px;height:76px}.about-teaser{padding:38px 20px;grid-template-columns:1fr;gap:28px}.about-teaser h2{font-size:clamp(24px,7vw,31px);margin:22px 0 30px}.about-teaser .profile-facts{gap:20px}}
+
+/* Compact, two-second home overview */
+.cover{min-height:460px}
+.cover-copy{padding:42px var(--pad) 32px;display:flex;flex-direction:column}
+.cover h1{font-size:clamp(36px,3.25vw,48px);line-height:1.08;margin:32px 0 36px}
+.identity{padding-top:16px;align-items:center}
+.identity strong{font-size:20px}
+.identity span{font-size:11px;line-height:1.55}
+.hero-actions{display:flex;flex-wrap:wrap;gap:22px;margin-top:auto;padding-top:22px}
+.hero-actions a{display:inline-flex;justify-content:space-between;gap:22px;min-width:112px;border-bottom:1px solid;padding-bottom:5px;font-size:11px}
+.hero-actions a span{transition:transform .18s}.hero-actions a:hover span,.hero-actions a:focus-visible span{transform:translateX(4px)}
+.poster{width:min(42%,190px);padding:23px;font-size:clamp(22px,1.9vw,31px);box-shadow:12px 15px 24px #0002}
+.sun{width:100px;height:100px}
+.exploring-row{grid-template-columns:54% 46%}
+.exploring{min-height:230px;padding:34px var(--pad)}
+.exploring h2{font-size:clamp(29px,2.8vw,40px);margin:22px 0}
+.exploring-video{padding:22px 28px 24px}
+.exploring-video .section-head{margin-bottom:12px}
+.exploring-video .featured-video{min-height:166px;grid-template-columns:35% 1fr}
+.exploring-video .featured-video .copy{padding:18px}
+.exploring-video .featured-video h3{font-size:18px;line-height:1.25}
+.exploring-video .editorial-list{display:none}
+body:has(.cover)>.sidebar+main>.section{padding-top:28px;padding-bottom:38px}
+body:has(.cover) .work-visual{height:clamp(150px,14vw,205px);aspect-ratio:auto;padding:18px}
+body:has(.cover) .work-visual b{font-size:clamp(20px,2vw,31px)}
+body:has(.cover) .work-card h3{font-size:15px;margin-top:10px}
+body:has(.cover) .work-card p{font-size:12px;line-height:1.5}
+body:has(.cover) .lecture-row{min-height:52px}
+body:has(.cover) .about-teaser{padding-block:38px}
+body:has(.cover) footer{padding-block:36px}
+@media(max-width:900px){.cover{min-height:0}.cover-copy{padding:34px 20px 26px;min-height:390px}.cover h1{font-size:clamp(28px,7.8vw,34px);margin:14px 0 28px}.identity{display:grid;grid-template-columns:auto 1fr}.identity span{text-align:left}.hero-actions{gap:12px;padding-top:20px}.hero-actions a{min-width:0;flex:1;gap:8px;font-size:10px}.cover-art{display:none}.exploring{padding:26px 20px;min-height:185px}.exploring h2{font-size:29px;margin:18px 0}.exploring-video{padding:22px 20px 28px}.exploring-video .featured-video{grid-template-columns:36% 1fr;min-height:155px}.exploring-video .video-thumb{min-height:155px}.exploring-video .featured-video .copy{min-height:0;padding:16px}.exploring-video .featured-video h3{font-size:16px}body:has(.cover) .work-visual{height:auto;aspect-ratio:1.55}body:has(.cover)>.sidebar+main>.section{padding-top:24px;padding-bottom:32px}}
