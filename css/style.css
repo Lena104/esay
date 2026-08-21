@@ -149,3 +149,18 @@ body:has(.compact-cover) footer h2{font-size:24px;line-height:1.25}body:has(.com
 
 /* The three direction links are the home WORK overview; do not repeat decorative project cards. */
 body:has(.compact-cover) .work-visual:before{display:none}
+
+/* Readable home type scale for wide desktop layouts */
+body:has(.compact-cover){font-size:17px}
+body:has(.compact-cover) .sidebar nav a{font-size:15px}
+body:has(.compact-cover) .sidebar-foot{font-size:14px}
+body:has(.compact-cover) .eyebrow{font-size:14px}
+.hero-profile ul{font-size:15px}.hero-profile>p:last-child{font-size:14px}
+.hero-actions a{font-size:15px}
+.hero-directions strong{font-size:20px}.hero-directions small,.hero-directions span{font-size:14px}
+.exploring .arrow-link{font-size:15px}
+.exploring-video .section-head a{font-size:14px}.exploring-video .featured-video h3{font-size:20px}.exploring-video .featured-video time,.exploring-video .featured-video span{font-size:15px}
+body:has(.compact-cover) .section-head,body:has(.compact-cover) .section-head a{font-size:15px}
+body:has(.compact-cover) .lecture-row{font-size:16px;min-height:64px}body:has(.compact-cover) .lecture-row time,body:has(.compact-cover) .lecture-row small{font-size:14px}
+body:has(.compact-cover) footer h2{font-size:26px}body:has(.compact-cover) .footer-inquiry{font-size:17px}body:has(.compact-cover) footer a{font-size:16px}
+@media(max-width:900px){body:has(.compact-cover){font-size:16px}body:has(.compact-cover) .eyebrow{font-size:13px}.hero-profile ul,.hero-profile>p:last-child{font-size:14px}.hero-actions a{font-size:13px}.hero-directions strong{font-size:13px}.hero-directions small{font-size:12px}.exploring .arrow-link{font-size:14px}.exploring-video .featured-video h3{font-size:18px}.exploring-video .featured-video time,.exploring-video .featured-video span{font-size:14px}body:has(.compact-cover) .section-head,body:has(.compact-cover) .section-head a{font-size:14px}body:has(.compact-cover) .lecture-row{font-size:15px}body:has(.compact-cover) .lecture-row time,body:has(.compact-cover) .lecture-row small{font-size:13px}body:has(.compact-cover) footer h2{font-size:24px}body:has(.compact-cover) .footer-inquiry{font-size:16px}body:has(.compact-cover) footer a{font-size:15px}}
