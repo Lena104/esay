@@ -44,7 +44,7 @@ jobs:
         shell: bash
         run: |
           mkdir -p public-dist/data
-          cp index.html 404.html about.html notes.html training.html work.html work-detail.html work-admin-toolkit.html work-pincanvas.html work-small-experiments.html public-dist/
+          cp index.html 404.html about.html contact.html notes.html training.html work.html work-detail.html work-admin-toolkit.html work-pincanvas.html work-small-experiments.html public-dist/
           cp robots.txt sitemap.xml public-dist/
           cp favicon.svg public-dist/
           cp -R css js public-dist/

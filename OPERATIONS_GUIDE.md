@@ -179,10 +179,13 @@ Small Experiments 목록을 관리합니다.
 | NOTES | `notes.html` |
 | TRAINING | `training.html` |
 | ABOUT·연락처 | `about.html` |
+| 문의 양식 | `contact.html`, `js/contact.js` |
 | PinCanvas | `work-pincanvas.html` |
 | 공통 모양·반응형 | `css/style.css` |
 | 공통 동작·데이터 로딩 | `js/main.js`, `js/data-loader.js` |
 | 파비콘 | `favicon.svg` |
+
+현재 CONTACT 문의 양식은 작성 내용을 정리해 방문자의 이메일 앱을 여는 방식입니다. 별도의 서버 저장 기능을 연결하기 전까지는 방문자가 이메일 앱에서 마지막 전송을 완료해야 합니다. 이메일과 카카오 오픈톡은 보조 연락 수단으로 계속 표시됩니다.
 
 HTML이나 CSS를 수정할 때는 모바일 화면도 함께 확인합니다. `references/`는 디자인 참고 자료이므로 수정하지 않습니다.
 
