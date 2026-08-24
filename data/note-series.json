@@ -1,12 +1,40 @@
 [
   {
+    "id": "canva",
+    "title": "Canva는 어디로 가고 있을까",
+    "label": "BRUNCH BOOK",
+    "description": "기능 사용법을 넘어, Canva가 어떤 기술과 회사를 연결하며 새로운 플랫폼으로 변화하고 있는지 살펴봅니다.",
+    "externalUrl": "https://brunch.co.kr/brunchbook/canva",
+    "detailUrl": "notes-series.html?series=canva",
+    "sourceType": "brunchbook",
+    "authorHandle": "mheeyoon",
+    "featured": true,
+    "sortOrder": 1
+  },
+  {
+    "id": "crossing",
+    "title": "함께 건너는 중",
+    "label": "BRUNCH MAGAZINE",
+    "description": "AI와 디지털 리터러시의 변화를 조금 먼저 건너보며, 현장에서 발견한 생각을 함께 나눕니다.",
+    "externalUrl": "https://brunch.co.kr/magazine/crossing",
+    "detailUrl": "notes-series.html?series=crossing",
+    "sourceType": "magazine",
+    "magazineNo": 316788,
+    "authorHandle": "mheeyoon",
+    "featured": false,
+    "sortOrder": 2
+  },
+  {
     "id": "trying",
     "title": "써보는 중",
     "label": "BRUNCH MAGAZINE",
     "description": "새로운 도구를 직접 써보고, 교육과 일의 현장에서 발견한 가능성을 기록합니다.",
     "externalUrl": "https://brunch.co.kr/magazine/trying",
     "detailUrl": "notes-series.html?series=trying",
-    "featured": true,
-    "sortOrder": 1
+    "sourceType": "magazine",
+    "magazineNo": 316789,
+    "authorHandle": "mheeyoon",
+    "featured": false,
+    "sortOrder": 3
   }
 ]
