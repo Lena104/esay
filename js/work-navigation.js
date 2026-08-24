@@ -1,9 +1,9 @@
 import { loadData, fallback } from './data-loader.js';
 
 const esc = (value) => String(value ?? '').replace(/[&<>"']/g, (character) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[character]);
-const normalize = (value) => { const url = new URL(value, location.href); return `${url.pathname.split('/').pop()}${url.search}`; };
+const normalize = (value) => { const url = new URL(value, location.href); return `${url.pathname.split('/').pop().replace(/\.html$/i, '')}${url.search}`; };
 const projects = (await loadData('projects.json', fallback.projects)).filter((project) => project.detailUrl && !project.external).sort((a, b) => (a.sortOrder || 999) - (b.sortOrder || 999));
-const pageKey = `${location.pathname.split('/').pop()}${location.search}`;
+const pageKey = `${location.pathname.split('/').pop().replace(/\.html$/i, '')}${location.search}`;
 const current = projects.find((project) => normalize(project.detailUrl) === pageKey);
 
 if (current) {
