@@ -6,11 +6,11 @@
   <header class="mobile-header"><a class="brand" href="index.html">ESAY</a><a href="notes.html">NOTES →</a></header>
   <aside class="sidebar"><a class="brand" href="index.html">ESAY</a><nav><a href="work.html"><b>01</b><span>WORK</span></a><a href="notes.html" aria-current="location"><b>02</b><span>NOTES</span></a><a href="training.html"><b>03</b><span>TRAINING</span></a><a href="about.html"><b>04</b><span>ABOUT</span></a><a href="contact.html"><b>→</b><span>CONTACT</span></a></nav></aside>
   <main id="main" class="page-shell note-series-page">
-    <a class="context-back" href="notes.html">← 모든 NOTES</a>
     <header class="page-intro note-series-intro"><p class="eyebrow" data-series-label>BRUNCH MAGAZINE</p><h1 data-series-title>써보는 중</h1><p data-series-description>새로운 도구를 직접 써보고, 교육과 일의 현장에서 발견한 가능성을 기록합니다.</p></header>
     <div class="section-head notes-source"><p class="eyebrow">ARTICLES</p><a data-series-external target="_blank" rel="noopener noreferrer">Brunch에서 보기 <span>→</span></a></div>
     <section class="full-list" data-series-notes><p class="status">글을 불러오는 중입니다.</p></section>
   </main>
+  <script type="module" src="js/notes-navigation.js"></script>
   <script type="module">
     import { loadData } from './js/data-loader.js';
     const esc = (value) => String(value ?? '').replace(/[&<>"']/g, (character) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[character]);
