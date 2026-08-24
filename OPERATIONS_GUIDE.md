@@ -14,7 +14,7 @@
 |---|---|---|
 | 앞으로의 강의 일정 추가 | 연결된 Google Calendar | 제목을 `[강의] 강의명 (기관명)`으로 입력하고, 일정이 지난 뒤 매일 자동 동기화 |
 | 과거 강의 이력 수정 | `data/lecture-history.manual.json` | GitHub에서 수정 후 `main`에 병합하거나 직접 커밋 |
-| Brunch 글 추가·제목 수정 | Brunch 매거진 「써보는 중」 | 매일 자동 동기화. 바로 반영하려면 `Sync public content` 수동 실행 |
+| Brunch 글 추가·제목 수정 | 연결된 Brunch 매거진·브런치북 | 매일 자동 동기화. 바로 반영하려면 `Sync public content` 수동 실행 |
 | Canva 영상 추가·제목 수정 | 연결된 YouTube 재생목록 | 재생목록을 저장한 뒤 매일 자동 동기화 또는 수동 실행 |
 | WORK 프로젝트 수정 | 관리용 Google Sheet의 `Work` 탭 | 수정 완료 5분 후 연결된 Apps Script가 동기화 요청 |
 | 일반 프로젝트 상세 내용 수정 | 같은 시트의 `Work Details` 탭 | 수정 완료 5분 후 자동 반영 |
@@ -79,15 +79,15 @@ GitHub의 `main` 브랜치에 변경이 들어가면 자동으로 배포됩니�
 
 ## Brunch NOTES 관리
 
-현재 NOTES는 Brunch 매거진 「써보는 중」과 연결되어 있습니다.
+현재 NOTES는 Brunch의 「Canva는 어디로 가고 있을까」, 「함께 건너는 중」, 「써보는 중」과 연결되어 있습니다.
 
-- 홈의 **NOW WRITING** 카드는 「써보는 중」 연재 페이지로 연결됩니다.
-- `notes.html`은 연재 목록, `notes-series.html?series=trying`은 해당 연재의 전체 글 목록입니다.
+- 홈의 **NOW WRITING** 카드는 `data/note-series.json`에서 `featured: true`인 연재로 연결됩니다.
+- `notes.html`은 연재 목록, `notes-series.html?series=연재ID`는 해당 연재의 전체 공개 글 목록입니다.
 - 개별 글을 누르면 Brunch 원문이 새 창에서 열립니다. 홈페이지에 본문을 복제하지 않습니다.
-- 새 글을 매거진에 추가하면 다음 동기화 때 NOTES에 나타납니다.
+- 새 글을 연결된 매거진이나 브런치북에 공개하면 다음 동기화 때 NOTES에 나타납니다. 브런치북의 예약·미공개 글은 제외됩니다.
 - 기존 글의 **제목, 부제목, 대표 이미지**를 Brunch에서 수정하면 다음 동기화 때 홈페이지 데이터도 갱신됩니다.
 - 홈페이지의 요약은 Brunch 부제목을 사용합니다. 부제목이 없으면 기본 안내 문구가 표시됩니다.
-- 현재는 이 매거진의 전체 글을 가져옵니다.
+- 새 연재를 추가하려면 `data/note-series.json`에 연결 정보와 순서를 한 번 등록합니다.
 
 바로 갱신하려면 **Actions → Sync public content → Run workflow**를 실행합니다.
 
