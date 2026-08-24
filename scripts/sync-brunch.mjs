@@ -47,6 +47,7 @@ function normalize(raw) {
       slug: `brunch-${article.no}`,
       date: new Date(Number(article.publishTime)).toISOString().slice(0, 10),
       category: 'BRUNCH',
+      seriesId: 'trying',
       tags: [],
       summary: article.subTitle || 'Brunch 매거진 「써보는 중」에 기록한 글입니다.',
       thumbnail: article.articleImageForHome?.replace(/^http:/, 'https:') || null,

@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="ko">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>브런치북 — ESAY</title><meta name="description" content="윤명희의 브런치 연재 글을 모아봅니다."><link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="css/style.css"></head>
+<body>
+  <a class="skip-link" href="#main">본문 바로가기</a>
+  <header class="mobile-header"><a class="brand" href="index.html">ESAY</a><a href="notes.html">NOTES →</a></header>
+  <aside class="sidebar"><a class="brand" href="index.html">ESAY</a><nav><a href="work.html"><b>01</b><span>WORK</span></a><a href="notes.html" aria-current="location"><b>02</b><span>NOTES</span></a><a href="training.html"><b>03</b><span>TRAINING</span></a><a href="about.html"><b>04</b><span>ABOUT</span></a><a href="contact.html"><b>→</b><span>CONTACT</span></a></nav></aside>
+  <main id="main" class="page-shell note-series-page">
+    <a class="context-back" href="notes.html">← 모든 NOTES</a>
+    <header class="page-intro note-series-intro"><p class="eyebrow" data-series-label>BRUNCH MAGAZINE</p><h1 data-series-title>써보는 중</h1><p data-series-description>새로운 도구를 직접 써보고, 교육과 일의 현장에서 발견한 가능성을 기록합니다.</p></header>
+    <div class="section-head notes-source"><p class="eyebrow">ARTICLES</p><a data-series-external target="_blank" rel="noopener noreferrer">Brunch에서 보기 <span>→</span></a></div>
+    <section class="full-list" data-series-notes><p class="status">글을 불러오는 중입니다.</p></section>
+  </main>
+  <script type="module">
+    import { loadData } from './js/data-loader.js';
+    const esc = (value) => String(value ?? '').replace(/[&<>"']/g, (character) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[character]);
+    const seriesId = new URLSearchParams(location.search).get('series') || 'trying';
+    const [seriesList, notes] = await Promise.all([loadData('note-series.json', []), loadData('notes.json', [])]);
+    const series = seriesList.find((item) => item.id === seriesId) || seriesList[0];
+    if (series) { document.title = `${series.title} — ESAY NOTES`; document.querySelector('[data-series-label]').textContent = series.label || 'BRUNCH MAGAZINE'; document.querySelector('[data-series-title]').textContent = series.title; document.querySelector('[data-series-description]').textContent = series.description; document.querySelector('[data-series-external]').href = series.externalUrl; }
+    const filtered = notes.filter((note) => !note.seriesId || note.seriesId === seriesId);
+    document.querySelector('[data-series-notes]').innerHTML = filtered.length ? filtered.map((note) => `<a class="note-row" href="${esc(note.externalUrl)}" target="_blank" rel="noopener noreferrer"><time>${esc(note.date)}</time><div><p class="eyebrow">${esc(note.category)}</p><h3>${esc(note.title)}</h3></div><p>${esc(note.summary)}</p><b aria-hidden="true">→</b></a>`).join('') : '<p class="status">새로운 글을 준비 중입니다.</p>';
+  </script>
+</body>
+</html>
