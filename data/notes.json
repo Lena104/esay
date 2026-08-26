@@ -1,5 +1,20 @@
 [
   {
+    "id": "brunch-42",
+    "title": "Canva의 배경 제거는 어디에서 왔을까?",
+    "slug": "brunch-42",
+    "date": "2026-08-26",
+    "category": "BRUNCH",
+    "seriesId": "canva",
+    "tags": [],
+    "summary": "버튼은 2019년에 먼저 왔고, 그 회사를 인수한 것은 2021년이었다",
+    "thumbnail": "https://t1.kakaocdn.net/brunch/service/user/bfQ4/image/OczBR3GT2speEtyADYPZcrKWy-Y.png",
+    "bodySource": "brunch",
+    "videoUrl": null,
+    "externalUrl": "https://brunch.co.kr/@mheeyoon/42",
+    "featured": true
+  },
+  {
     "id": "brunch-41",
     "title": "Canva는 왜 이렇게 많은 회사를 사고 있을까?",
     "slug": "brunch-41",
@@ -12,7 +27,7 @@
     "bodySource": "brunch",
     "videoUrl": null,
     "externalUrl": "https://brunch.co.kr/@mheeyoon/41",
-    "featured": true
+    "featured": false
   },
   {
     "id": "brunch-39",
