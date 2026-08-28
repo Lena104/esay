@@ -1,5 +1,20 @@
 [
   {
+    "id": "brunch-43",
+    "title": "목업 하나를 위해 회사를 샀다고?",
+    "slug": "brunch-43",
+    "date": "2026-08-28",
+    "category": "BRUNCH",
+    "seriesId": "canva",
+    "tags": [],
+    "summary": "Smartmockups에서 Canva Mockups까지, 디자인 다음 장",
+    "thumbnail": "https://t1.kakaocdn.net/brunch/service/user/bfQ4/image/EDYeOo8W3goJ50viDf8fUGoPHlI.png",
+    "bodySource": "brunch",
+    "videoUrl": null,
+    "externalUrl": "https://brunch.co.kr/@mheeyoon/43",
+    "featured": true
+  },
+  {
     "id": "brunch-42",
     "title": "Canva의 배경 제거는 어디에서 왔을까?",
     "slug": "brunch-42",
@@ -12,7 +27,7 @@
     "bodySource": "brunch",
     "videoUrl": null,
     "externalUrl": "https://brunch.co.kr/@mheeyoon/42",
-    "featured": true
+    "featured": false
   },
   {
     "id": "brunch-41",
