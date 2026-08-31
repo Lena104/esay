@@ -1,5 +1,20 @@
 [
   {
+    "id": "brunch-44",
+    "title": "Canva에는 왜 이렇게 사진이 많을까?",
+    "slug": "brunch-44",
+    "date": "2026-08-31",
+    "category": "BRUNCH",
+    "seriesId": "canva",
+    "tags": [],
+    "summary": "Pexels와 Pixabay를 따라가며 디자인의 첫 번째 재료를 생각하다",
+    "thumbnail": "https://t1.kakaocdn.net/brunch/service/user/bfQ4/image/HcZMlqxVE8YEIqYW9G1P-P_hTyg.png",
+    "bodySource": "brunch",
+    "videoUrl": null,
+    "externalUrl": "https://brunch.co.kr/@mheeyoon/44",
+    "featured": true
+  },
+  {
     "id": "brunch-43",
     "title": "목업 하나를 위해 회사를 샀다고?",
     "slug": "brunch-43",
@@ -12,7 +27,7 @@
     "bodySource": "brunch",
     "videoUrl": null,
     "externalUrl": "https://brunch.co.kr/@mheeyoon/43",
-    "featured": true
+    "featured": false
   },
   {
     "id": "brunch-42",
