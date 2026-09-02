@@ -1,5 +1,20 @@
 [
   {
+    "id": "brunch-45",
+    "title": "Canva가 데이터 시각화 회사를 품은 이유",
+    "slug": "brunch-45",
+    "date": "2026-09-02",
+    "category": "BRUNCH",
+    "seriesId": "canva",
+    "tags": [],
+    "summary": "Flourish가 Canva에 가져온 데이터 이야기",
+    "thumbnail": "https://t1.kakaocdn.net/brunch/service/user/bfQ4/image/RIiRmwxwMSEjhV8d0nae6gnsTMs.png",
+    "bodySource": "brunch",
+    "videoUrl": null,
+    "externalUrl": "https://brunch.co.kr/@mheeyoon/45",
+    "featured": true
+  },
+  {
     "id": "brunch-44",
     "title": "Canva에는 왜 이렇게 사진이 많을까?",
     "slug": "brunch-44",
@@ -12,7 +27,7 @@
     "bodySource": "brunch",
     "videoUrl": null,
     "externalUrl": "https://brunch.co.kr/@mheeyoon/44",
-    "featured": true
+    "featured": false
   },
   {
     "id": "brunch-43",
