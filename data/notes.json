@@ -1,5 +1,20 @@
 [
   {
+    "id": "brunch-46",
+    "title": "스프레드시트까지 만든 Canva",
+    "slug": "brunch-46",
+    "date": "2026-09-04",
+    "category": "BRUNCH",
+    "seriesId": "canva",
+    "tags": [],
+    "summary": "Canva Sheets가 데이터와 디자인, AI를 한 화면에 놓은 이유",
+    "thumbnail": "https://t1.kakaocdn.net/brunch/service/user/bfQ4/image/v4aNOq1iSiAkoh3d7WOuOHzBoDE.png",
+    "bodySource": "brunch",
+    "videoUrl": null,
+    "externalUrl": "https://brunch.co.kr/@mheeyoon/46",
+    "featured": true
+  },
+  {
     "id": "brunch-45",
     "title": "Canva가 데이터 시각화 회사를 품은 이유",
     "slug": "brunch-45",
@@ -12,7 +27,7 @@
     "bodySource": "brunch",
     "videoUrl": null,
     "externalUrl": "https://brunch.co.kr/@mheeyoon/45",
-    "featured": true
+    "featured": false
   },
   {
     "id": "brunch-44",
