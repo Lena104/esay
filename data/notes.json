@@ -1,5 +1,20 @@
 [
   {
+    "id": "brunch-48",
+    "title": "Canva 사용자도 Affinity를 배워야 할까?",
+    "slug": "brunch-48",
+    "date": "2026-09-09",
+    "category": "BRUNCH",
+    "seriesId": "canva",
+    "tags": [],
+    "summary": "속도와 정밀도 사이에서 내 도구를 고르는 법",
+    "thumbnail": "https://t1.kakaocdn.net/brunch/service/user/bfQ4/image/1jGqG8pDnFjYamP-v-TvbTPZoM4.png",
+    "bodySource": "brunch",
+    "videoUrl": null,
+    "externalUrl": "https://brunch.co.kr/@mheeyoon/48",
+    "featured": true
+  },
+  {
     "id": "brunch-47",
     "title": "Canva가 Affinity를 인수한 진짜 이유",
     "slug": "brunch-47",
@@ -12,7 +27,7 @@
     "bodySource": "brunch",
     "videoUrl": null,
     "externalUrl": "https://brunch.co.kr/@mheeyoon/47",
-    "featured": true
+    "featured": false
   },
   {
     "id": "brunch-46",
