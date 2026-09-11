@@ -1,5 +1,20 @@
 [
   {
+    "id": "brunch-49",
+    "title": "Canva가 모션 디자인까지 가져온 이유",
+    "slug": "brunch-49",
+    "date": "2026-09-11",
+    "category": "BRUNCH",
+    "seriesId": "canva",
+    "tags": [],
+    "summary": "Affinity 다음 빈칸을 채운 Cavalry 이야기",
+    "thumbnail": "https://t1.kakaocdn.net/brunch/service/user/bfQ4/image/Fq08IcfPVcb-CGX_ALvrws4jhyo.png",
+    "bodySource": "brunch",
+    "videoUrl": null,
+    "externalUrl": "https://brunch.co.kr/@mheeyoon/49",
+    "featured": true
+  },
+  {
     "id": "brunch-48",
     "title": "Canva 사용자도 Affinity를 배워야 할까?",
     "slug": "brunch-48",
@@ -12,7 +27,7 @@
     "bodySource": "brunch",
     "videoUrl": null,
     "externalUrl": "https://brunch.co.kr/@mheeyoon/48",
-    "featured": true
+    "featured": false
   },
   {
     "id": "brunch-47",
