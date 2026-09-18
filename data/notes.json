@@ -1,5 +1,20 @@
 [
   {
+    "id": "brunch-52",
+    "title": "디자인 도구에서 AI 플랫폼으로",
+    "slug": "brunch-52",
+    "date": "2026-09-18",
+    "category": "BRUNCH",
+    "seriesId": "canva",
+    "tags": [],
+    "summary": "만드는 AI를 넘어 일을 맡는 AI로 가는 Canva",
+    "thumbnail": "https://t1.kakaocdn.net/brunch/service/user/bfQ4/image/G0HWCuYjsqsyNNQNCq8rMlKYeRo.png",
+    "bodySource": "brunch",
+    "videoUrl": null,
+    "externalUrl": "https://brunch.co.kr/@mheeyoon/52",
+    "featured": true
+  },
+  {
     "id": "brunch-51",
     "title": "Canva의 AI는 왜 이렇게 많을까?",
     "slug": "brunch-51",
@@ -12,7 +27,7 @@
     "bodySource": "brunch",
     "videoUrl": null,
     "externalUrl": "https://brunch.co.kr/@mheeyoon/51",
-    "featured": true
+    "featured": false
   },
   {
     "id": "brunch-50",
