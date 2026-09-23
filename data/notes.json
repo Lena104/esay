@@ -1,5 +1,20 @@
 [
   {
+    "id": "brunch-54",
+    "title": "고객에게 닿은 다음까지 Canva가 맡는다면",
+    "slug": "brunch-54",
+    "date": "2026-09-23",
+    "category": "BRUNCH",
+    "seriesId": "canva",
+    "tags": [],
+    "summary": "Ortto가 잇는 고객 데이터와 마케팅 자동화",
+    "thumbnail": "https://t1.kakaocdn.net/brunch/service/user/bfQ4/image/fqaaqUF4lzfGiWmBwGEactO7-oo.png",
+    "bodySource": "brunch",
+    "videoUrl": null,
+    "externalUrl": "https://brunch.co.kr/@mheeyoon/54",
+    "featured": true
+  },
+  {
     "id": "brunch-53",
     "title": "Canva는 왜 광고 성과까지 보기 시작했을까?",
     "slug": "brunch-53",
@@ -12,7 +27,7 @@
     "bodySource": "brunch",
     "videoUrl": null,
     "externalUrl": "https://brunch.co.kr/@mheeyoon/53",
-    "featured": true
+    "featured": false
   },
   {
     "id": "brunch-52",
