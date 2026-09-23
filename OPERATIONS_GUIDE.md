@@ -190,7 +190,23 @@ Small Experiments 목록을 관리합니다.
 | 공통 동작·데이터 로딩 | `js/main.js`, `js/data-loader.js` |
 | 파비콘 | `favicon.svg` |
 
-현재 CONTACT 문의 양식은 작성 내용을 정리해 방문자의 이메일 앱을 여는 방식입니다. 별도의 서버 저장 기능을 연결하기 전까지는 방문자가 이메일 앱에서 마지막 전송을 완료해야 합니다. 이메일과 카카오 오픈톡은 보조 연락 수단으로 계속 표시됩니다.
+CONTACT 문의 양식은 Cloudflare Pages Function이 요청을 받은 뒤 Resend로 `yoon@esay.co.kr`에 바로 전송합니다. 받은 메일에서 답장을 누르면 문의자가 입력한 이메일 주소로 회신됩니다. Turnstile이 자동 문의를 차단하며, 서버 설정이 빠졌을 때만 기존 이메일 앱 방식으로 전환됩니다.
+
+### 문의 메일 최초 설정
+
+1. Resend에서 `esay.co.kr` 도메인을 추가합니다.
+2. Resend가 안내하는 SPF·DKIM DNS 레코드를 hosting.co.kr DNS 관리 화면에 등록하고 도메인 인증을 완료합니다.
+3. Resend API Key를 생성합니다.
+4. Cloudflare에서 Turnstile 위젯을 만들고 호스트에 `esay.pages.dev`와 향후 연결할 커스텀 도메인을 등록합니다.
+5. Cloudflare **Workers & Pages → esay → Settings → Variables and Secrets**에 아래 값을 Production과 Preview에 등록합니다.
+
+- Secret `RESEND_API_KEY`: Resend API Key
+- Secret `TURNSTILE_SECRET_KEY`: Turnstile Secret Key
+- Variable `TURNSTILE_SITE_KEY`: Turnstile Site Key
+- Variable `RESEND_FROM`: `ESAY 홈페이지 <inquiry@esay.co.kr>`
+- Variable `CONTACT_TO`: `yoon@esay.co.kr`
+
+설정값을 저장한 뒤 **Deploy to Cloudflare Pages**를 한 번 다시 실행합니다. 문의 양식 아래에 Turnstile이 나타나면 직접 전송 준비가 완료된 것입니다.
 
 HTML이나 CSS를 수정할 때는 모바일 화면도 함께 확인합니다. `references/`는 디자인 참고 자료이므로 수정하지 않습니다.
 
