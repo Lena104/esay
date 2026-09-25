@@ -1,5 +1,20 @@
 [
   {
+    "id": "brunch-55",
+    "title": "Canva는 결국 무엇이 되려는 걸까?",
+    "slug": "brunch-55",
+    "date": "2026-09-25",
+    "category": "BRUNCH",
+    "seriesId": "canva",
+    "tags": [],
+    "summary": "인수한 회사들을 연결해 찾은 하나의 작업 흐름",
+    "thumbnail": "https://t1.kakaocdn.net/brunch/service/user/bfQ4/image/P7--oQSoeGUF5tijUmx1tH_0IpE.png",
+    "bodySource": "brunch",
+    "videoUrl": null,
+    "externalUrl": "https://brunch.co.kr/@mheeyoon/55",
+    "featured": true
+  },
+  {
     "id": "brunch-54",
     "title": "고객에게 닿은 다음까지 Canva가 맡는다면",
     "slug": "brunch-54",
@@ -12,7 +27,7 @@
     "bodySource": "brunch",
     "videoUrl": null,
     "externalUrl": "https://brunch.co.kr/@mheeyoon/54",
-    "featured": true
+    "featured": false
   },
   {
     "id": "brunch-53",
