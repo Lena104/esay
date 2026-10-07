@@ -230,6 +230,81 @@ body:has(.program-grid) .page-intro>p:last-child{max-width:720px;white-space:nor
   .pincanvas-hero .pin-demo-label{padding-top:12px}
 }
 
+/* Corporate home — services and outcomes before the founder profile */
+.corporate-home{font-size:16px;line-height:1.55}
+.corporate-home .sidebar nav a{font-size:14px}
+.corporate-home .sidebar-foot{font-size:13px}
+.corporate-home .eyebrow{font-size:13px;line-height:1.4;letter-spacing:.045em}
+.corporate-hero{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(330px,.65fr);min-height:520px;border-bottom:1px solid var(--line);background:#fbfaf6}
+.corporate-hero-main{padding:52px var(--pad) 46px;display:flex;flex-direction:column;align-items:flex-start}
+.corporate-hero-main h1{font-size:clamp(46px,4.2vw,64px);line-height:1.04;letter-spacing:-.055em;margin:48px 0 28px;max-width:1040px}
+.corporate-hero-main h1 span{display:block}
+.corporate-lead{font-size:18px;line-height:1.65;max-width:720px;margin:0;color:#4e4f49}
+.corporate-actions{display:flex;gap:12px;margin-top:auto;padding-top:34px}
+.corporate-actions a{min-width:174px;min-height:50px;padding:13px 16px;border:1px solid var(--ink);display:flex;align-items:center;justify-content:space-between;gap:24px;font-size:14px;font-weight:700;transition:background .18s,color .18s}
+.corporate-actions a.primary{background:var(--ink);color:#fff}
+.corporate-actions a:hover,.corporate-actions a:focus-visible{background:var(--yellow);color:var(--ink)}
+.corporate-brief{background:var(--green);color:#fff;padding:52px clamp(30px,3.2vw,52px) 44px;display:flex;flex-direction:column;justify-content:space-between;border-left:1px solid var(--line)}
+.corporate-brief .eyebrow{color:var(--yellow)}
+.corporate-brief strong{display:block;color:var(--yellow);font-size:clamp(38px,3.1vw,50px);line-height:1.05;letter-spacing:-.035em;margin-top:28px}
+.corporate-brief>p{font-size:16px;line-height:1.75;margin:38px 0;color:#edf5ef}
+.corporate-brief>a{align-self:flex-start;font-size:14px;border-bottom:1px solid #ffffff88;padding-bottom:5px;display:flex;gap:34px}
+.service-directions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));background:#fbfaf6;border-bottom:1px solid var(--line)}
+.service-directions>a{min-height:150px;padding:24px var(--pad);display:grid;grid-template-columns:30px minmax(0,1fr) auto;gap:14px;align-items:center;border-right:1px solid var(--line);transition:background .18s}
+.service-directions>a:last-child{border-right:0}
+.service-directions>a:hover,.service-directions>a:focus-visible{background:var(--yellow)}
+.service-directions span{font-size:13px;color:var(--green);font-weight:800;align-self:start;padding-top:4px}
+.service-directions div{align-self:start}
+.service-directions strong{display:block;font-size:19px;line-height:1.2;letter-spacing:-.015em}
+.service-directions small{display:block;font-size:14px;line-height:1.55;color:#555;margin-top:11px;max-width:290px}
+.service-directions b{font-size:18px;transition:transform .18s}
+.service-directions>a:hover b,.service-directions>a:focus-visible b{transform:translateX(5px)}
+.corporate-home .exploring-row{grid-template-columns:52% 48%}
+.corporate-home .exploring{padding-top:48px;padding-bottom:48px;min-height:330px}
+.corporate-home .exploring h2{font-size:clamp(31px,2.7vw,40px);line-height:1.12;margin:34px 0}
+.corporate-home .exploring-summary{font-size:16px;line-height:1.65}
+.corporate-home .exploring-video .featured-video h3{font-size:20px;line-height:1.35}
+.corporate-home .lecture-row{font-size:16px;min-height:64px}
+.corporate-home .lecture-row time,.corporate-home .lecture-row small{font-size:13px}
+.corporate-home footer h2{font-size:30px;line-height:1.25}
+.corporate-home .footer-inquiry{font-size:17px;line-height:1.65}
+.corporate-home footer a{font-size:15px;line-height:1.7}
+
+@media(max-width:1100px) and (min-width:901px){
+  .corporate-hero{grid-template-columns:minmax(0,1.45fr) minmax(290px,.55fr)}
+  .corporate-hero-main h1{font-size:48px}
+  .service-directions>a{padding-left:28px;padding-right:28px}
+  .service-directions strong{font-size:17px}
+}
+
+@media(max-width:900px){
+  .corporate-home{font-size:16px}
+  .corporate-hero{display:block;min-height:0}
+  .corporate-hero-main{padding:36px 20px 32px}
+  .corporate-hero-main h1{font-size:clamp(36px,10vw,44px);line-height:1.08;margin:32px 0 22px}
+  .corporate-hero-main h1 span{display:inline}
+  .corporate-hero-main h1 span:after{content:" "}
+  .corporate-lead{font-size:16px;line-height:1.65}
+  .corporate-actions{width:100%;padding-top:28px;display:grid;grid-template-columns:1fr 1fr}
+  .corporate-actions a{min-width:0;min-height:48px;padding:12px;font-size:13px}
+  .corporate-brief{border-left:0;padding:30px 20px;display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:end}
+  .corporate-brief strong{font-size:32px;margin-top:18px}
+  .corporate-brief>p{font-size:14px;line-height:1.65;margin:0}
+  .corporate-brief>a{grid-column:1/-1;font-size:13px;margin-top:2px}
+  .service-directions{display:block}
+  .service-directions>a{min-height:0;padding:22px 20px;grid-template-columns:30px minmax(0,1fr) 20px;border-right:0;border-bottom:1px solid var(--line)}
+  .service-directions>a:last-child{border-bottom:0}
+  .service-directions strong{font-size:17px}
+  .service-directions small{font-size:13px;margin-top:6px;max-width:none}
+  .corporate-home .exploring{padding:32px 20px;min-height:0}
+  .corporate-home .exploring h2{font-size:30px;margin:24px 0}
+  .corporate-home .exploring-summary{font-size:15px}
+  .corporate-home .lecture-row{font-size:14px}
+  .corporate-home .lecture-row time,.corporate-home .lecture-row small{font-size:12px}
+  .corporate-home footer h2{font-size:26px}
+  .corporate-home .footer-inquiry{font-size:16px}
+}
+
 /* Brunch series and contextual WORK navigation */
 .exploring-summary{max-width:470px;margin:-18px 0 24px;font-size:16px;line-height:1.6}
 .note-series-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
